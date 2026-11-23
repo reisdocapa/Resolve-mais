@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172b4d">
+<title>Resolve+ | Serviços perto de você</title>
+<style>
+:root{--navy:#172b4d;--blue:#315b96;--bg:#f4f6fa;--muted:#68758a;--line:#e5eaf1;--green:#16845b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#172235}
+header{background:linear-gradient(135deg,#172b4d,#284b7a);color:white;padding:24px 18px 30px;border-radius:0 0 24px 24px}
+.top{max-width:760px;margin:auto;display:flex;align-items:center;justify-content:space-between}.brand{font-size:22px;font-weight:800;letter-spacing:-.5px}.pill{font-size:12px;background:#ffffff20;border:1px solid #ffffff35;padding:7px 10px;border-radius:99px}.top-actions{display:flex;align-items:center;gap:9px}.login-open{border:0;border-radius:999px;padding:9px 14px;background:#fff;color:var(--navy);font-weight:750;cursor:pointer}
+.hero{max-width:760px;margin:25px auto 0}.hero h1{font-size:27px;line-height:1.12;margin:0 0 9px;letter-spacing:-.7px}.hero p{color:#d6e0ee;margin:0;font-size:14px}
+main{max-width:760px;margin:-1px auto 40px;padding:0 16px}.searchbox{background:white;padding:12px;border-radius:16px;box-shadow:0 8px 28px #152b4b16;margin-top:-18px;position:relative;z-index:2}
+.searchrow{display:flex;gap:9px;align-items:center}.searchrow input{width:100%;border:0;outline:0;font-size:15px;padding:10px 4px;color:#172235}.searchicon{font-size:20px;color:#63738a}
+.hint{font-size:11px;color:var(--muted);padding:5px 4px 0}
+.suggestions{display:none;border-top:1px solid var(--line);margin-top:8px;padding-top:6px}.suggestions.show{display:block}.suggestion{padding:10px 8px;border-radius:9px;cursor:pointer;font-size:14px}.suggestion:hover{background:#f1f5fb}
+.section{margin-top:26px}.sectionhead{display:flex;align-items:end;justify-content:space-between;margin-bottom:12px}.section h2{font-size:17px;margin:0;letter-spacing:-.2px}.sub{font-size:12px;color:var(--muted)}
+.categories{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.cat{border:1px solid var(--line);background:white;border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;color:#1c2a40;font-weight:650;font-size:12px}.cat span{display:block;font-size:23px;margin-bottom:7px}.cat.active{border:1.5px solid var(--blue);background:#eef4fc;color:var(--blue)}
+.results{display:grid;gap:11px}.person{background:white;border:1px solid var(--line);border-radius:15px;padding:14px;display:flex;gap:12px;align-items:flex-start}.avatar{width:54px;height:54px;flex:0 0 54px;border-radius:50%;object-fit:cover;background:#e8eef7}.personinfo{flex:1;min-width:0}.name{font-weight:750;font-size:14px}.meta{font-size:12px;color:var(--muted);margin-top:4px}.rating{color:#a66b00;font-weight:700}.desc{font-size:12px;color:#4c5b70;margin-top:7px;line-height:1.4}.tag{display:inline-block;background:#eef6f1;color:#17734e;border-radius:99px;padding:4px 8px;font-size:10px;margin-top:8px}.action{border:0;background:var(--navy);color:white;border-radius:9px;padding:9px 11px;font-weight:650;font-size:11px;cursor:pointer;white-space:nowrap}
+.notice{margin-top:18px;padding:12px;border:1px dashed #cbd5e1;border-radius:12px;color:#64748b;font-size:11px;line-height:1.45;background:#ffffff80}
+footer{text-align:center;color:#8490a1;font-size:11px;padding:15px}.empty{background:white;padding:18px;border-radius:14px;color:var(--muted);font-size:13px}
+.modal{display:none;position:fixed;inset:0;background:#101b2bcc;z-index:10;overflow:auto;padding:18px}.modal.open{display:block}.profile{max-width:650px;margin:20px auto;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 18px 55px #0003}.profilehead{padding:18px;background:#f7f9fc;display:flex;gap:14px;align-items:center}.profilehead .avatar{width:76px;height:76px;flex-basis:76px}.profilehead h2{margin:0;font-size:20px}.profilehead p{margin:5px 0 0;color:var(--muted);font-size:13px}.close{margin-left:auto;border:0;background:#e8edf4;border-radius:50%;width:34px;height:34px;font-size:19px;cursor:pointer}.profilebody{padding:18px}.profilebody h3{font-size:14px;margin:18px 0 9px}.profilebody p{font-size:13px;line-height:1.5;color:#536176;margin:6px 0}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.stat{background:#f4f7fb;border-radius:12px;padding:11px}.stat b{display:block;font-size:14px}.stat span{font-size:11px;color:var(--muted)}.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.gallery img{width:100%;height:130px;object-fit:cover;border-radius:11px;background:#e8eef7}.review{border-top:1px solid var(--line);padding:10px 0}.review b{font-size:12px}.review p{margin:4px 0}.price{font-weight:750;color:#17734e}.profilefoot{padding:0 18px 18px}.profilefoot button{width:100%;padding:12px;border:0;border-radius:11px;background:var(--navy);color:white;font-weight:700}
+.auth-modal{display:none;position:fixed;inset:0;z-index:30;background:#101b2bd9;padding:18px;overflow:auto;align-items:center;justify-content:center}.auth-modal.open{display:flex}.auth-card{width:100%;max-width:430px;background:#fff;border-radius:22px;padding:24px;box-shadow:0 22px 70px #0005;position:relative}.auth-close{position:absolute;right:16px;top:14px;border:0;background:#edf1f6;border-radius:50%;width:34px;height:34px;font-size:20px;cursor:pointer}.auth-logo{text-align:center;color:#16845b;font-size:25px;font-weight:850;margin:4px 0 6px}.auth-sub{text-align:center;color:#68758a;font-size:13px;margin:0 0 22px}.auth-card h2{font-size:21px;margin:0 0 6px}.auth-description{font-size:13px;color:#68758a;margin:0 0 17px}.role-switch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:17px}.role-switch button,.mode-switch button{border:1px solid #dce3ec;background:#f7f9fc;border-radius:10px;padding:10px;font-weight:650;color:#43536a;cursor:pointer}.role-switch button.selected,.mode-switch button.selected{background:#eaf5ef;border-color:#16845b;color:#126b49}.mode-switch{display:flex;gap:8px;margin-bottom:16px}.mode-switch button{flex:1}.auth-label{display:block;font-size:12px;font-weight:700;margin:12px 0 6px;color:#26364d}.auth-input{width:100%;border:1px solid #dce3ec;border-radius:11px;padding:12px;font-size:14px;outline:none}.auth-input:focus{border-color:#16845b;box-shadow:0 0 0 3px #16845b18}.password-field{display:flex;align-items:center;position:relative}.password-field .auth-input{padding-right:48px}.toggle-password{position:absolute;right:7px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#526176;border-radius:8px;padding:7px;cursor:pointer;font-size:18px;line-height:1}.toggle-password:focus-visible{outline:2px solid #16845b;outline-offset:2px}.auth-submit{width:100%;border:0;border-radius:11px;background:#16845b;color:white;padding:13px;font-weight:750;margin-top:17px;cursor:pointer}.google-btn{width:100%;border:1px solid #dce3ec;border-radius:11px;background:white;padding:12px;font-weight:650;margin-top:10px;cursor:pointer;color:#26364d}.auth-note{font-size:11px;line-height:1.5;color:#748196;background:#f5f7fa;border-radius:10px;padding:10px;margin:15px 0 0}.auth-message{font-size:12px;line-height:1.5;margin-top:12px;color:#a33b32;min-height:18px}.auth-message.ok{color:#16734e}
+.profile-fields{display:grid;gap:9px;margin:4px 0 10px}.profile-fields[hidden]{display:none}.profile-fields .auth-label{margin:3px 0 5px}.profile-fields textarea{min-height:76px;resize:vertical}.profile-fields input[type=file]{font-size:12px;padding:9px}.review-carousel{overflow:hidden;position:relative;margin-top:8px;border-radius:13px}.review-track{display:flex;gap:12px;width:max-content;animation:reviewsGoRight 32s linear infinite}.review-carousel:hover .review-track,.review-carousel:focus-within .review-track{animation-play-state:paused}.review-card{width:260px;max-width:78vw;flex:0 0 260px;background:#f7f9fc;border:1px solid var(--line);border-radius:13px;padding:13px}.review-card strong{font-size:12px}.review-card .stars{color:#b98218;font-size:13px;letter-spacing:1px;margin:5px 0}.review-card p{font-size:12px;line-height:1.45;color:#536176;margin:5px 0}.review-card small{font-size:10px;color:#8490a1}.client-profile{background:#f4f7fb;border-radius:12px;padding:12px;margin-top:12px}.client-profile img{width:54px;height:54px;border-radius:50%;object-fit:cover;background:#e8eef7}.client-profile-row{display:flex;gap:12px;align-items:center}@keyframes reviewsGoRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.review-track{animation:none;transform:none}}
+@media(min-width:600px){.categories{grid-template-columns:repeat(6,1fr)}.hero h1{font-size:34px}.gallery{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div class="brand">✦ Resolve+</div><div class="top-actions"><div class="pill">Projeto demonstrativo</div><button class="login-open" id="openAuth">Entrar</button></div></div>
+ <div class="hero"><h1>Resolva o que precisa,<br>com quem entende.</h1><p>Encontre profissionais recomendados para os serviços do dia a dia.</p></div>
+</header>
+<main>
+ <div class="searchbox">
+  <div class="searchrow"><span class="searchicon">⌕</span><input id="search" autocomplete="off" placeholder="Ex.: torneira vazando, pintura, montagem..." aria-label="Buscar serviço"></div>
+  <div class="hint">Busque pelo serviço ou descreva o problema com suas palavras.</div>
+  <div id="suggestions" class="suggestions"></div>
+ </div>
+ <section class="section">
+  <div class="sectionhead"><h2>O que você precisa?</h2><span class="sub">Categorias</span></div>
+  <div id="categories" class="categories"></div>
+ </section>
+ <section class="section">
+  <div class="sectionhead"><h2 id="resultTitle">Profissionais em destaque</h2><span class="sub">Demonstração e cadastrados</span></div>
+  <div id="results" class="results"></div>
+ </section>
+ <div class="notice"><strong>Importante:</strong> esta é uma demonstração visual. Nomes, fotos ilustrativas, preços, avaliações e comentários são fictícios; não representam profissionais reais nem valores de mercado. O contato e a contratação ainda são demonstrativos. Cadastros reais de clientes e prestadores são armazenados no Supabase; os perfis de demonstração continuam identificados como fictícios.</div>
+</main>
+<div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-label="Entrar ou criar conta">
+ <section class="auth-card">
+  <button class="auth-close" id="closeAuth" aria-label="Fechar">×</button>
+  <div class="auth-logo">✦ Resolve+</div>
+  <p class="auth-sub">Seu problema encontra a solução certa.</p>
+  <h2 id="authTitle">Bem-vindo de volta!</h2>
+  <p class="auth-description" id="authDescription">Entre na sua conta para continuar.</p>
+  <div class="role-switch"><button type="button" class="selected" data-role="Cliente">Sou cliente</button><button type="button" data-role="Prestador">Sou prestador</button></div>
+  <div class="mode-switch"><button type="button" class="selected" data-mode="login">Entrar</button><button type="button" data-mode="register">Criar conta</button></div>
+  <form id="authForm" novalidate>
+   <label class="auth-label" for="authEmail">E-mail Gmail</label><input class="auth-input" id="authEmail" type="email" autocomplete="email" placeholder="seunome@gmail.com" required>
+   <label class="auth-label" for="authPassword">Senha</label><div class="password-field"><input class="auth-input" id="authPassword" type="password" autocomplete="current-password" placeholder="Digite sua senha" required minlength="6"><button class="toggle-password" type="button" data-toggle-password="authPassword" aria-label="Mostrar senha" aria-pressed="false" title="Mostrar senha">👁</button></div>
+   <div id="confirmWrap" hidden><label class="auth-label" for="authConfirm">Confirmar senha</label><div class="password-field"><input class="auth-input" id="authConfirm" type="password" autocomplete="new-password" placeholder="Digite a senha novamente"><button class="toggle-password" type="button" data-toggle-password="authConfirm" aria-label="Mostrar confirmação de senha" aria-pressed="false" title="Mostrar senha">👁</button></div></div>
+   <div class="profile-fields" id="profileFields" hidden></div>
+   <button class="auth-submit" type="submit" id="authSubmit">Entrar</button>
+  </form>
+  <button class="google-btn" type="button" id="googleAuth">Continuar com Google</button>
+  <div class="auth-message" id="authMessage" aria-live="polite"></div>
+  <p class="auth-note"><b>Conta segura:</b> o cadastro e o login usam a autenticação do Supabase. Use seu e-mail e senha; a senha não é armazenada no perfil do Resolve+. O acesso por Google depende de configuração adicional no painel do Supabase.</p>
+ </section>
+</div>
+<div class="modal" id="clientProfileModal" role="dialog" aria-modal="true" aria-label="Perfil do cliente">
+ <div class="profile"><div class="profilehead"><img class="avatar" id="clientAvatar" alt="Foto do cliente"><div><h2 id="clientName">Meu perfil</h2><p>Perfil do cliente</p></div><button class="close" id="closeClientProfile" aria-label="Fechar">×</button></div><div class="profilebody"><h3>Minha região</h3><p id="clientRegion"></p><p class="meta">Seus dados de perfil são carregados da sua conta.</p></div></div>
+</div>
+<div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-label="Perfil do profissional">
+ <div class="profile">
+  <div class="profilehead"><img class="avatar" id="profileAvatar" alt="Foto ilustrativa do profissional"><div><h2 id="profileName"></h2><p id="profileRole"></p></div><button class="close" id="closeProfile" aria-label="Fechar">×</button></div>
+  <div class="profilebody">
+   <h3>Sobre o profissional</h3><p id="profileDesc"></p>
+   <div class="stats" id="profileStats"></div>
+   <h3>Serviços realizados</h3><div class="gallery" id="profileGallery"></div>
+   <h3>Avaliações de clientes</h3><div class="review-carousel" id="reviewCarousel" aria-label="Comentários de clientes em movimento"><div class="review-track" id="profileReviews"></div></div>
+  </div>
+  <div class="profilefoot"><button onclick="alert('Demonstração: o contato será habilitado em uma versão futura.')">Solicitar orçamento (demonstração)</button></div>
+ </div>
+</div>
+<footer>Resolve+ · Protótipo inicial para validação no condomínio</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Conexão pública do projeto Supabase. A segurança dos dados é garantida pelas políticas RLS no banco.
+const SUPABASE_URL = "https://dtajgvrfiexflfmcrunu.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_gFhUao5yFGmL1fin76wNvA_zrHVWfNk";
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+let currentUser = null;
+let currentProfile = null;
+let registeredProviders = [];
+
+// Janela de acesso integrada à autenticação real do Supabase.
+const authModal=document.getElementById('authModal');
+let authMode='login', authRole='Cliente';
+// Os controles de mostrar/ocultar senha são registrados uma única vez abaixo.
+function updateProfileFields(){
+ const wrap=document.getElementById('profileFields');
+ const registering=authMode==='register';
+ wrap.hidden=!registering;
+ if(!registering){wrap.innerHTML='';return}
+ const common=`<div><label class="auth-label" for="profileNameInput">Nome</label><input class="auth-input" id="profileNameInput" type="text" placeholder="Seu nome" required></div>
+ <div><label class="auth-label" for="profilePhotoInput">Foto de perfil</label><input class="auth-input" id="profilePhotoInput" type="file" accept="image/*"></div>
+ <div><label class="auth-label" for="profileRegionInput">Região</label><input class="auth-input" id="profileRegionInput" type="text" placeholder="Ex.: São Bernardo do Campo" required></div>`;
+ const professional=authRole==='Prestador'?`<div><label class="auth-label" for="profileServiceInput">Serviços oferecidos</label><input class="auth-input" id="profileServiceInput" type="text" placeholder="Ex.: hidráulica, instalação, reparos" required></div>
+ <div><label class="auth-label" for="profileBioInput">Apresentação profissional</label><textarea class="auth-input" id="profileBioInput" placeholder="Conte um pouco sobre sua experiência e seu trabalho" required></textarea></div>`:'';
+ wrap.innerHTML=common+professional;
+}
+function updateAuth(){
+ document.getElementById('authTitle').textContent=authMode==='login'?'Bem-vindo de volta!':'Crie sua conta';
+ document.getElementById('authDescription').textContent=authMode==='login'?'Entre na sua conta para continuar.':`Cadastre-se como ${authRole.toLocaleLowerCase()} no Resolve+.`;
+ document.getElementById('authSubmit').textContent=authMode==='login'?'Entrar':'Criar perfil';
+ document.getElementById('confirmWrap').hidden=authMode==='login';
+ document.getElementById('authPassword').autocomplete=authMode==='login'?'current-password':'new-password';
+ document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('selected',b.dataset.mode===authMode));
+ document.querySelectorAll('[data-role]').forEach(b=>b.classList.toggle('selected',b.dataset.role===authRole));
+ document.getElementById('authMessage').textContent='';
+ document.getElementById('authMessage').className='auth-message';
+ updateProfileFields();
+}
+document.querySelectorAll('[data-toggle-password]').forEach(button=>button.addEventListener('click',()=>{
+ const field=document.getElementById(button.dataset.togglePassword);const show=field.type==='password';field.type=show?'text':'password';button.textContent=show?'🙈':'👁';button.setAttribute('aria-label',show?'Ocultar senha':'Mostrar senha');button.setAttribute('aria-pressed',String(show));button.title=show?'Ocultar senha':'Mostrar senha';
+}));
+document.getElementById('openAuth').onclick=async()=>{if(currentUser){await supabaseClient.auth.signOut();currentUser=null;currentProfile=null;document.getElementById('openAuth').textContent='Entrar';renderPeople(active,input.value);return;}authModal.classList.add('open');document.body.style.overflow='hidden';updateAuth()};
+document.getElementById('closeAuth').onclick=()=>{authModal.classList.remove('open');document.body.style.overflow=''};
+authModal.addEventListener('click',e=>{if(e.target===authModal){authModal.classList.remove('open');document.body.style.overflow=''}});
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{authMode=b.dataset.mode;updateAuth()});
+document.querySelectorAll('[data-role]').forEach(b=>b.onclick=()=>{authRole=b.dataset.role;updateAuth()});
+document.getElementById('authForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const email=document.getElementById('authEmail').value.trim().toLowerCase();
+ const password=document.getElementById('authPassword').value;
+ if(!email){setAuthMessage('Informe seu e-mail.');return;}
+ if(password.length<6){setAuthMessage('A senha precisa ter pelo menos 6 caracteres.');return;}
+ if(authMode==='register'&&password!==document.getElementById('authConfirm').value){setAuthMessage('As senhas não coincidem.');return;}
+ try{if(authMode==='register')await handleSignup(email,password);else await handleLogin(email,password);}
+ catch(err){setAuthMessage('Não foi possível concluir a operação: '+(err.message||'tente novamente.'));}
+});
+document.getElementById('googleAuth').onclick=async()=>{
+ const {error}=await supabaseClient.auth.signInWithOAuth({provider:'google',options:{redirectTo:window.location.href}});
+ if(error)setAuthMessage('O acesso Google ainda precisa ser ativado nas configurações de autenticação do Supabase: '+error.message);
+};
+document.getElementById('closeClientProfile').onclick=()=>{document.getElementById('clientProfileModal').classList.remove('open');document.body.style.overflow=''};
+document.getElementById('clientProfileModal').addEventListener('click',e=>{if(e.target.id==='clientProfileModal'){e.currentTarget.classList.remove('open');document.body.style.overflow=''}});
+const workPhotos=[
+ "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600",
+ "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600",
+ "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=600",
+ "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600",
+ "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600",
+ "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600"
+];
+const reviews=[
+ ["Mariana Oliveira","Foi pontual, explicou o que precisava ser feito e entregou um ótimo resultado.","há 2 dias"],
+ ["Rafael Santos","Boa comunicação e muito cuidado durante o serviço. Recomendo!","há 1 semana"],
+ ["Camila Ferreira","O profissional foi atencioso e deixou tudo organizado ao terminar.","há 2 semanas"],
+ ["Lucas Almeida","Combinou o horário direitinho e resolveu o problema com eficiência.","há 3 semanas"]
+];
+const raw=[
+["Encanador","🔧",[
+["Carlos Mendes","4,9","32 avaliações","Reparos de torneiras, vazamentos e instalações.","Atende com agendamento","R$ 80–150","Em geral, responde em até 20 min","São Bernardo do Campo e região",0],
+["Rogério Lima","4,8","24 avaliações","Manutenção hidráulica e troca de registros.","Disponibilidade a confirmar","R$ 70–140","Em geral, responde em até 1 hora","São Bernardo do Campo",1],
+["André Souza","4,7","18 avaliações","Pequenos reparos e instalação de louças.","Disponibilidade a confirmar","A combinar","Resposta variável","ABC Paulista",2]]],
+["Eletricista","💡",[
+["Marcos Oliveira","4,9","41 avaliações","Tomadas, interruptores e iluminação.","Atende com agendamento","R$ 90–180","Em geral, responde em até 30 min","São Bernardo do Campo e região",3],
+["Paulo Henrique","4,8","27 avaliações","Instalações e manutenção elétrica residencial.","Disponibilidade a confirmar","R$ 80–160","Em geral, responde em até 1 hora","ABC Paulista",4],
+["Diego Alves","4,7","16 avaliações","Ventiladores, luminárias e pequenos reparos.","Disponibilidade a confirmar","A combinar","Resposta variável","São Bernardo do Campo",5]]],
+["Pintor","🖌️",[
+["Roberto Costa","4,9","29 avaliações","Pintura interna, retoques e acabamento.","Atende com agendamento","R$ 180–350 por cômodo","Em geral, responde em até 30 min","São Bernardo do Campo",0],
+["Fábio Martins","4,8","21 avaliações","Pintura de cômodos e preparação de paredes.","Disponibilidade a confirmar","Orçamento por serviço","Em geral, responde em até 1 hora","ABC Paulista",3],
+["Leandro Reis","4,6","14 avaliações","Pintura residencial e pequenos reparos.","Disponibilidade a confirmar","A combinar","Resposta variável","São Bernardo do Campo",2]]],
+["Montador","🪑",[
+["Eduardo Nunes","4,9","36 avaliações","Montagem de guarda-roupas, camas e estantes.","Atende com agendamento","R$ 80–200 por móvel","Em geral, responde em até 20 min","São Bernardo do Campo e região",1],
+["Bruno Rocha","4,8","19 avaliações","Montagem e desmontagem de móveis.","Disponibilidade a confirmar","R$ 70–180 por móvel","Em geral, responde em até 1 hora","ABC Paulista",4],
+["Vinícius Melo","4,7","12 avaliações","Instalação de prateleiras e suportes.","Disponibilidade a confirmar","A combinar","Resposta variável","São Bernardo do Campo",5]]],
+["Limpeza","🧹",[
+["Ana Ribeiro","4,9","44 avaliações","Limpeza residencial e organização.","Atende com agendamento","R$ 150–250 por diária","Em geral, responde em até 20 min","São Bernardo do Campo",4],
+["Juliana Freitas","4,8","31 avaliações","Limpeza de rotina e pós-reforma.","Disponibilidade a confirmar","R$ 160–280 por diária","Em geral, responde em até 1 hora","ABC Paulista",0],
+["Patrícia Gomes","4,7","22 avaliações","Limpeza de cozinha, banheiro e áreas internas.","Disponibilidade a confirmar","A combinar","Resposta variável","São Bernardo do Campo",3]]],
+["Outros","＋",[
+["Sérgio Barros","4,8","17 avaliações","Pequenos reparos domésticos.","Disponibilidade a confirmar","A combinar","Resposta variável","ABC Paulista",2],
+["Camila Duarte","4,9","20 avaliações","Costura e ajustes de roupas.","Disponibilidade a confirmar","A partir de R$ 25","Em geral, responde em até 1 hora","São Bernardo do Campo",5],
+["Rafael Cardoso","4,7","11 avaliações","Instalações simples e suporte residencial.","Disponibilidade a confirmar","A combinar","Resposta variável","São Bernardo do Campo e região",1]]]
+];
+const data=raw.map(([cat,icon,people])=>({cat,icon,people:people.map(p=>({name:p[0],rating:p[1],count:p[2],desc:p[3],availability:p[4],price:p[5],response:p[6],region:p[7],photo:p[8],reviews}))}));
+const problemMap=[
+ {terms:["vazamento","vazando","vaza","torneira pingando","torneira vazando","cano furado","cano estourado","registro","pia entupida","ralo entupido","chuveiro sem agua","descarga"],cat:"Encanador",suggest:"Vazamento ou problema hidráulico"},
+ {terms:["curto","tomada","sem energia","luz piscando","lâmpada","lampada","chuveiro queimado","disjuntor","fiação","fiação elétrica"],cat:"Eletricista",suggest:"Problema elétrico"},
+ {terms:["parede descascando","pintar","pintura","mofo na parede","infiltração","infiltracao"],cat:"Pintor",suggest:"Pintura ou parede"},
+ {terms:["montar","montagem","guarda roupa","guarda-roupa","cama","estante","móvel","movel"],cat:"Montador",suggest:"Montagem de móveis"},
+ {terms:["faxina","limpeza","casa suja","limpar","pós obra","pos obra"],cat:"Limpeza",suggest:"Limpeza residencial"}
+];
+const cats=document.getElementById('categories'),results=document.getElementById('results'),input=document.getElementById('search'),sugg=document.getElementById('suggestions'),title=document.getElementById('resultTitle');
+let active="Todos";
+function allPeople(){return [...data.flatMap(d=>d.people.map(p=>({...p,cat:d.cat,icon:d.icon}))), ...registeredProviders];}
+function norm(s){return s.toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+function matchedCategory(q){let n=norm(q);return problemMap.find(m=>m.terms.some(t=>n.includes(norm(t))))?.cat||null}
+function renderCats(){cats.innerHTML=data.map(d=>`<button class="cat ${active===d.cat?'active':''}" data-cat="${d.cat}"><span>${d.icon}</span>${d.cat}</button>`).join('');cats.querySelectorAll('button').forEach(b=>b.onclick=()=>{active=b.dataset.cat;input.value=active;renderCats();renderPeople(active);sugg.classList.remove('show')})}
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function setAuthMessage(message,ok=false){const el=document.getElementById('authMessage');el.textContent=message;el.className='auth-message'+(ok?' ok':'');}
+async function uploadAvatar(userId,file){
+ if(!file)return null;
+ if(!file.type.startsWith('image/'))throw new Error('Escolha um arquivo de imagem.');
+ if(file.size>3*1024*1024)throw new Error('A foto deve ter no máximo 3 MB.');
+ const ext=(file.name.split('.').pop()||'jpg').replace(/[^a-z0-9]/gi,'').toLowerCase()||'jpg';
+ const path=`${userId}/${Date.now()}.${ext}`;
+ const {error}=await supabaseClient.storage.from('avatars').upload(path,file,{upsert:true,contentType:file.type});
+ if(error)throw error;
+ const {data}=supabaseClient.storage.from('avatars').getPublicUrl(path);
+ const {error:updateError}=await supabaseClient.from('profiles').update({avatar_url:data.publicUrl}).eq('id',userId);
+ if(updateError)throw updateError;
+ return data.publicUrl;
+}
+async function loadRegisteredProviders(){
+ const {data:rows,error}=await supabaseClient.from('profiles').select('id,full_name,region,services,bio,avatar_url,created_at').eq('role','Prestador').eq('is_active',true).order('created_at',{ascending:false});
+ if(error){console.warn('Não foi possível carregar prestadores:',error.message);return;}
+ registeredProviders=(rows||[]).map(row=>({id:row.id,name:row.full_name||'Prestador',rating:'Novo',count:'Perfil cadastrado',desc:row.bio||'Profissional cadastrado no Resolve+.',availability:'Disponibilidade a confirmar',price:'A combinar',response:'A combinar',region:row.region||'Região não informada',photo:0,photoUrl:row.avatar_url,cat:row.services||'Serviços gerais',icon:'🧰',reviews:[],isReal:true}));
+ renderPeople(active,input.value);
+}
+async function showSignedInProfile(){
+ if(!currentUser)return;
+ const {data:profile,error}=await supabaseClient.from('profiles').select('*').eq('id',currentUser.id).maybeSingle();
+ if(error){setAuthMessage('Sua conta entrou, mas não consegui carregar o perfil: '+error.message);return;}
+ currentProfile=profile;
+ const btn=document.getElementById('openAuth');btn.textContent='Sair';btn.title='Sair da conta';
+ if(profile?.role==='Cliente'){
+  document.getElementById('clientName').textContent=profile.full_name||currentUser.email;
+  document.getElementById('clientRegion').textContent=profile.region||'Região não informada';
+  document.getElementById('clientAvatar').src=profile.avatar_url||'https://i.pravatar.cc/120?img=12';
+  document.getElementById('clientProfileModal').classList.add('open');
+ } else if(profile?.role==='Prestador'){
+  const person=registeredProviders.find(p=>p.id===profile.id)||{name:profile.full_name,cat:profile.services||'Prestador',rating:'Novo',count:'Perfil cadastrado',desc:profile.bio||'',price:'A combinar',response:'A combinar',region:profile.region||'',availability:'Disponibilidade a confirmar',photo:0,photoUrl:profile.avatar_url,reviews:[],isReal:true};
+  openProfile(person);
+ }
+}
+async function handleSignup(email,password,msg){
+ const name=document.getElementById('profileNameInput')?.value.trim();
+ const region=document.getElementById('profileRegionInput')?.value.trim();
+ const photoFile=document.getElementById('profilePhotoInput')?.files?.[0];
+ const services=authRole==='Prestador'?document.getElementById('profileServiceInput')?.value.trim():null;
+ const bio=authRole==='Prestador'?document.getElementById('profileBioInput')?.value.trim():null;
+ if(!name||!region){setAuthMessage('Preencha seu nome e sua região.');return;}
+ if(authRole==='Prestador'&&(!services||!bio)){setAuthMessage('Informe os serviços oferecidos e sua apresentação profissional.');return;}
+ setAuthMessage('Criando sua conta...');
+ const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{role:authRole,full_name:name,region,services,bio}}});
+ if(error){setAuthMessage(error.message);return;}
+ currentUser=data.user||null;
+ if(data.session){
+  try{if(photoFile)await uploadAvatar(data.user.id,photoFile);}catch(err){setAuthMessage('Conta criada, mas não consegui salvar a foto: '+err.message);}
+  await loadRegisteredProviders();
+  await showSignedInProfile();
+  authModal.classList.remove('open');document.body.style.overflow='';
+  setAuthMessage('Conta criada e perfil salvo com sucesso!',true);
+ }else{
+  setAuthMessage('Cadastro criado! Confirme seu e-mail pelo link enviado e depois entre no Resolve+. Se você selecionou uma foto, poderá adicioná-la depois que entrar.',true);
+ }
+}
+async function handleLogin(email,password){
+ setAuthMessage('Verificando seus dados...');
+ const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});
+ if(error){setAuthMessage(error.message);return;}
+ currentUser=data.user;await loadRegisteredProviders();
+ authModal.classList.remove('open');document.body.style.overflow='';
+ await showSignedInProfile();
+}
+function openProfile(person){
+ document.getElementById('profileAvatar').src=person.photoUrl||`https://i.pravatar.cc/160?img=${person.photo+11}`;
+ document.getElementById('profileName').textContent=person.name;
+ document.getElementById('profileRole').textContent=person.cat+' · '+(person.isReal?'Profissional cadastrado':'★ '+person.rating+' · '+person.count);
+ document.getElementById('profileDesc').textContent=person.isReal?person.desc:person.desc+' Este perfil é fictício e serve para demonstrar como as informações de um profissional poderão aparecer.';
+ document.getElementById('profileStats').innerHTML=`<div class="stat"><b class="price">${escapeHTML(person.price)}</b><span>${person.isReal?'Preço informado pelo profissional':'Faixa de preço ilustrativa'}</span></div><div class="stat"><b>${escapeHTML(person.response)}</b><span>Tempo de resposta</span></div><div class="stat"><b>${escapeHTML(person.region)}</b><span>Região de atendimento</span></div><div class="stat"><b>${escapeHTML(person.availability)}</b><span>Disponibilidade</span></div>`;
+ document.getElementById('profileGallery').innerHTML=person.isReal?'<p>Fotos de trabalhos poderão ser adicionadas em uma próxima etapa.</p>':[0,1,2].map((v)=>`<img src="${workPhotos[(person.photo+v)%workPhotos.length]}" alt="Imagem ilustrativa de serviço" loading="lazy">`).join('');
+ const reviewSource=person.isReal?[]:reviews;const reviewCards=reviewSource.map(r=>`<article class="review-card"><strong>${r[0]}</strong><div class="stars" aria-label="5 de 5 estrelas">★★★★★</div><p>${r[1]}</p><small>${r[2]} · comentário demonstrativo</small></article>`).join('');
+ document.getElementById('profileReviews').innerHTML=reviewCards?reviewCards+reviewCards:'<p>Este profissional ainda não recebeu avaliações.</p>'; 
+ document.getElementById('profileModal').classList.add('open');document.body.style.overflow='hidden';
+}
+function renderPeople(cat="Todos",query=""){
+ let list=allPeople().filter(x=>(cat==="Todos"||x.cat===cat||x.cat.toLocaleLowerCase('pt-BR').includes(cat.toLocaleLowerCase('pt-BR'))));
+ if(query){let target=matchedCategory(query);if(target)list=list.filter(x=>x.cat===target||x.cat.toLocaleLowerCase('pt-BR').includes(target.toLocaleLowerCase('pt-BR')));else{let q=norm(query);list=list.filter(x=>norm(x.cat+" "+x.name+" "+x.desc+" "+x.region).includes(q))}}
+ title.textContent=query?(matchedCategory(query)?`Profissionais para: ${query}`:"Resultados da busca"):cat==="Todos"?"Profissionais em destaque":cat;
+ if(!list.length){results.innerHTML='<div class="empty">Ainda não há profissionais cadastrados para essa busca. Tente outra categoria ou volte mais tarde.</div>';return}
+ results.innerHTML=list.map((x,i)=>`<article class="person"><img class="avatar" src="${escapeHTML(x.photoUrl||`https://i.pravatar.cc/120?img=${x.photo+11}`)}" alt="Foto de perfil" loading="lazy"><div class="personinfo"><div class="name">${escapeHTML(x.name)}</div><div class="meta">${escapeHTML(x.cat)} · ${x.isReal?'<span class="rating">Perfil cadastrado</span>':'<span class="rating">★ '+escapeHTML(x.rating)+'</span> · '+escapeHTML(x.count)}</div><div class="desc">${escapeHTML(x.desc)}</div><span class="tag">${escapeHTML(x.availability)}</span><div class="meta">Preço médio: <b>${escapeHTML(x.price)}</b></div></div><button class="action" data-person="${i}">Ver perfil</button></article>`).join('');
+ results.querySelectorAll('[data-person]').forEach(b=>b.onclick=()=>openProfile(list[Number(b.dataset.person)]));
+}
+function suggestions(q){
+ if(!q.trim()){sugg.classList.remove('show');return}
+ const target=matchedCategory(q);
+ let opts=[];
+ if(target){opts.push(problemMap.find(m=>m.cat===target).suggest,target); }
+ else{
+   opts=problemMap.filter(m=>m.terms.some(t=>norm(t).includes(norm(q))||norm(q).includes(norm(t)))).map(m=>m.suggest);
+   opts.push(...data.map(d=>d.cat).filter(c=>norm(c).includes(norm(q))));
+ }
+ opts=[...new Set(opts)].slice(0,5);
+ sugg.innerHTML=(opts.length?opts:[`Buscar "${q}"`]).map(t=>`<div class="suggestion">${t}</div>`).join('');
+ sugg.classList.add('show');
+ sugg.querySelectorAll('.suggestion').forEach(el=>el.onclick=()=>{
+   let value=el.textContent;let cat=data.find(d=>d.cat===value)?.cat||matchedCategory(value)||target;
+   if(cat){active=cat;input.value=value;renderCats();renderPeople(cat,value===cat?"":q)}
+   else{input.value=value;active="Todos";renderCats();renderPeople("Todos",q)}
+   sugg.classList.remove('show')
+ });
+}
+input.addEventListener('input',()=>{active="Todos";renderCats();suggestions(input.value);renderPeople("Todos",input.value)});
+document.getElementById('closeProfile').onclick=()=>{document.getElementById('profileModal').classList.remove('open');document.body.style.overflow=''};
+document.getElementById('profileModal').addEventListener('click',e=>{if(e.target.id==='profileModal'){e.currentTarget.classList.remove('open');document.body.style.overflow=''}});
+document.addEventListener('click',e=>{if(!e.target.closest('.searchbox'))sugg.classList.remove('show')});
+renderCats();renderPeople();
+// A demonstração começa diretamente na tela de login, conforme solicitado.
+window.addEventListener('DOMContentLoaded',async()=>{updateAuth();const {data}=await supabaseClient.auth.getSession();currentUser=data.session?.user||null;await loadRegisteredProviders();if(currentUser){document.getElementById('openAuth').textContent='Sair';await showSignedInProfile();}else{authModal.classList.add('open');document.body.style.overflow='hidden';}});
+supabaseClient.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;if(!currentUser){document.getElementById('openAuth').textContent='Entrar';}else{document.getElementById('openAuth').textContent='Sair';}});
+</script>
+</body></html>
